@@ -1,0 +1,54 @@
+﻿@page "/faculties"
+@using StudentAppMint.Data
+@inject FacultyService FacultyService
+@inject NavigationManager NavigationManager
+
+<h3>Faculties List</h3>
+@* <NavLink href="/createproduct" class="btn btn-primary">Create</NavLink> *@
+<table class="table">
+    <thead>
+        <tr>
+            <th>Faculty ID</th>
+            <th>Faculty Name</th>
+            <th>Departments</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var faculty in Faculty)
+        {
+                <tr>
+                    <td>@faculty.FacultyId</td>
+                    <td>@faculty.FacultyName</td>
+                    <td>@faculty.Departments</td>
+                </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    List<Faculty>
+    Faculty;
+
+    // private void NavigateToEditProduct(int productId)
+    // {
+    //     NavigationManager.NavigateTo($"/editproduct/{productId}");
+    // }
+
+    protected override void OnInitialized()
+    {
+        Faculty = (FacultyService.GetFaculties()).ToList();
+    }
+
+    // private void DeleteProductById(int productId)
+    // {
+    //     try
+    //     {
+    //         ProductService.DeleteProductById(productId);
+    //     }
+    //     catch (Exception ex)
+    //     {
+    //         Console.WriteLine($"Error deleting product: {ex.Message}");
+    //     }
+    // }
+}
+
